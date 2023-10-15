@@ -1,4 +1,7 @@
 # GodMode-kill-notify
+##INFO
+This addon is designed to protect your players from being killed by other players in god mode.
+
 ## Usage
 
 To use this script in your Garry's Mod server, follow these steps:
