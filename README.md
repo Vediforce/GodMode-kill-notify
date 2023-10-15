@@ -1,5 +1,5 @@
 # GodMode-kill-notify
-##INFO
+## INFO
 This addon is designed to protect your players from being killed by other players in god mode.
 
 ## Usage
