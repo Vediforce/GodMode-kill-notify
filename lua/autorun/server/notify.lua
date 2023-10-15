@@ -6,7 +6,6 @@ hook.Add("PlayerHurt", "GetAttacker", function(victim, attacker, damageTaken, he
     end
     if attacker:IsAdmin() then return end
     if attacker:IsPlayer() and attacker:HasGodMode() then
-        print("123")
         victim:SetHealth(victim:Health() + healthRemaining)
     end
 end)
