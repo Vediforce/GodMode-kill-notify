@@ -9,6 +9,4 @@ To use this script in your Garry's Mod server, follow these steps:
 
 1. Copy the provided Lua script into your server's `addons` or `lua` directory.
 
-2. Ensure that your server is configured to allow Lua scripting.
-
-3. Restart your Garry's Mod server to apply the changes.
+2. Restart your Garry's Mod server to apply the changes.
