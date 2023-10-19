@@ -1,7 +1,7 @@
 # GodMode-kill-notify
 ## INFO
 This addon is designed to protect your players from being killed by other players in god mode.
-And he notify your online admin who tried damage in godmode.
+And notify your online admins who tried damage in godmode.
 
 ## Usage
 
