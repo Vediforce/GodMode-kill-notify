@@ -3,7 +3,7 @@ if SERVER then
 
     hook.Add("PlayerHurt", "GetAttacker", function(victim, attacker, damageTaken, healthRemaining)
 		for _, ply in pairs(player.GetAll()) do
-			if ply:IsAdmin() and attacker:HasGodMode() then
+			if ply:IsAdmin() and not attacker:IsAdmin() and attacker:HasGodMode() then
 				net.Start("NET_GODNOTIFI")
 				net.WriteString(attacker:Nick())
 				net.Send(ply)
