@@ -1,16 +1,26 @@
-hook.Add("PlayerHurt", "GetAttacker", function(victim, attacker, damageTaken, healthRemaining)
-    -- Loop through all players
-    for _, ply in pairs(player.GetAll()) do
-        -- If the player is an admin and the attacker is not an admin and the attacker has god mode
-        if ply:IsAdmin() and not attacker:IsAdmin() and attacker:HasGodMode() then
-            -- Print a message to the player that the attacker has attacked them in god mode
-            ply:PrintMessage(HUD_PRINTTALK, attacker:Nick() .. " аттаковал " .. victim:Nick() .. " в годмоде!")
-        end
-    end
-    -- If the attacker is an admin, return
-    if attacker:IsAdmin() then return end
-    -- If the attacker is a player and has god mode, set their health to the health remaining
-    if attacker:IsPlayer() and attacker:HasGodMode() then
-        victim:SetHealth(victim:Health() + healthRemaining)
-    end
-end)
+if SERVER then
+    util.AddNetworkString("NET_GODNOTIFI")
+
+    hook.Add("PlayerHurt", "GetAttacker", function(victim, attacker, damageTaken, healthRemaining)
+		for _, ply in pairs(player.GetAll()) do
+			if ply:IsAdmin() and attacker:HasGodMode() then
+				net.Start("NET_GODNOTIFI")
+				net.WriteString(attacker:Nick())
+				net.Send(ply)
+			end
+		end
+
+		if attacker:IsAdmin() then return end
+	    if attacker:IsPlayer() and attacker:HasGodMode() then
+	        victim:SetHealth(victim:Health() + healthRemaining)
+	    end
+	end)
+end
+	
+if CLIENT then
+	net.Receive("NET_GODNOTIFI", function()
+		local attacker = net.ReadString()
+        print(attacker .. " attacked in god mode! <<<<<")
+        notification.AddLegacy(attacker .. " аттаковал в годмоде!", 3, 7)
+	end)
+end
